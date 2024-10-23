@@ -17,4 +17,12 @@ public class MenuManager : MonoBehaviour
         // Переход на сцену TestMVP
         SceneManager.LoadScene("TestMVP");
     }
+    public void QuitGame()
+    {
+        // Завершить приложение
+        Application.Quit();
+
+        // Для отладки в Unity (чтобы увидеть, что кнопка работает)
+        Debug.Log("Игра закрыта!");
+    }
 }
