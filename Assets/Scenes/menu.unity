@@ -1554,7 +1554,19 @@ MonoBehaviour:
   m_Value: 2
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2021980085}
+        m_TargetAssemblyTypeName: BrightnessManager, Assembly-CSharp
+        m_MethodName: ChangeBrightness
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &826077599
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,7 +1754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90084d02dfedcc943b7f39a356efd1c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brightnessSlider: {fileID: 0}
+  SliderIntensity: {fileID: 0}
 --- !u!1 &932858247
 GameObject:
   m_ObjectHideFlags: 0
@@ -3441,7 +3453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90084d02dfedcc943b7f39a356efd1c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brightnessSlider: {fileID: 754134266}
+  SliderIntensity: {fileID: 754134266}
 --- !u!1 &2110526830
 GameObject:
   m_ObjectHideFlags: 0

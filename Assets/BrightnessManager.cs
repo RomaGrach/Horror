@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BrightnessManager : MonoBehaviour
 {
-    public Slider brightnessSlider;
+    public Slider SliderIntensity;
     private Light sceneLight;
 
     void Start()
@@ -16,11 +16,11 @@ public class BrightnessManager : MonoBehaviour
         // Присвоить начальное значение яркости слайдера
         if (sceneLight != null)
         {
-            brightnessSlider.value = sceneLight.intensity;
+            SliderIntensity.value = sceneLight.intensity;
         }
 
         // Подписаться на изменение значения слайдера
-        brightnessSlider.onValueChanged.AddListener(ChangeBrightness);
+        SliderIntensity.onValueChanged.AddListener(ChangeBrightness);
     }
 
     public void ChangeBrightness(float intensity)
