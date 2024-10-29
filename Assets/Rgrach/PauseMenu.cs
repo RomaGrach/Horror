@@ -41,6 +41,7 @@ public class PauseMenu : MonoBehaviour
     // Функция для продолжения игры
     public void ResumeGame()
     {
+        Debug.Log("button clicked");
         pausePanel.SetActive(false);   // Скрыть панель паузы
         Time.timeScale = 1f;           // Возобновить время
         isPaused = false;
@@ -49,6 +50,7 @@ public class PauseMenu : MonoBehaviour
     // Переход в главное меню
     public void LoadMainMenu()
     {
+        Debug.Log("button clicked");
         Time.timeScale = 1f;            // Возобновить время перед загрузкой меню
         SceneManager.LoadScene("menu"); // Замените "MainMenu" на название вашей сцены
     }
