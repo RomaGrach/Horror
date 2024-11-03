@@ -6,8 +6,8 @@ using TMPro;
 
 public class playerCloc : MonoBehaviour
 {
-    public TextMeshProUGUI text;
-
+    //public TextMeshProUGUI text;
+    public int moshrum = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,22 +27,27 @@ public class playerCloc : MonoBehaviour
         if (mushroomsScript != null)
         {
             // Обновляем текстовое поле значением touchingObjectsCount
-            text.text = mushroomsScript.touchingObjectsCount.ToString();
+            //text.text = mushroomsScript.touchingObjectsCount.ToString();
+            moshrum = mushroomsScript.touchingObjectsCount;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        text.text = "0";
+        moshrum = 0;
+        //text.text = "0";
     }
+    
     private void OnTriggerStay(Collider other)
     {
         moshrums mushroomsScript = other.GetComponent<moshrums>();
         if (mushroomsScript != null)
         {
             // Обновляем текстовое поле значением touchingObjectsCount
-            text.text = mushroomsScript.touchingObjectsCount.ToString();
+            //text.text = mushroomsScript.touchingObjectsCount.ToString();
+            moshrum = mushroomsScript.touchingObjectsCount;
         }
     }
+    
 
 }
