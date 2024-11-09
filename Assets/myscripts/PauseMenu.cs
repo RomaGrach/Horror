@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pausePanel;     // Панель паузы
@@ -13,7 +12,6 @@ public class PauseMenu : MonoBehaviour
     {
         pausePanel.SetActive(false);    // Отключаем панели при старте
     }
-
     void Update()
     {
         // Проверяем нажатие клавиши ESC
@@ -29,7 +27,6 @@ public class PauseMenu : MonoBehaviour
             }
         }
     }
-
     // Функция для показа панели паузы
     public void PauseGame()
     {
@@ -37,7 +34,6 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;          // Остановить время в игре
         isPaused = true;
     }
-
     // Функция для продолжения игры
     public void ResumeGame()
     {
@@ -46,7 +42,6 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;           // Возобновить время
         isPaused = false;
     }
-
     // Переход в главное меню
     public void LoadMainMenu()
     {
@@ -54,5 +49,4 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;            // Возобновить время перед загрузкой меню
         SceneManager.LoadScene("menu"); // Замените "MainMenu" на название вашей сцены
     }
-
 }
