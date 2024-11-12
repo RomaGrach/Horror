@@ -5,6 +5,9 @@ using UnityEngine;
 public class generatorController : MonoBehaviour
 {
     public List<moshrums> cells; // Список всех клеток на сцене
+    public List<line> matrix; // Список всех клеток на сцене
+    public int[][] minefild;
+
     public int totalMines = 10; // Общее количество мин
     public int fieldWidth = 10; // Ширина поля
     public int fieldHeight = 10; // Высота поля
@@ -46,4 +49,10 @@ public class generatorController : MonoBehaviour
 
         Debug.Log("Мины успешно распределены!");
     }
+
+    public class line
+    {
+        public List<moshrums> cells; // Список всех клеток на сцене
+    }
+    
 }
