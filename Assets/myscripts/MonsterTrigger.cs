@@ -2,20 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class MonsterTrigger : MonoBehaviour
 {
-    public GameObject monster;       // Ссылка на объект монстра
-    public Transform playerCamera;  // Ссылка на камеру игрока
-    public float randomIntervalMin = 5f; // Минимальное время до следующего появления
-    public float randomIntervalMax = 15f; // Максимальное время до следующего появления
-    public float monsterDistance = 5f;   // Расстояние перед игроком
+    public GameObject monster;       // РЎСЃС‹Р»РєР° РЅР° РѕР±СЉРµРєС‚ РјРѕРЅСЃС‚СЂР°
+    public Transform playerCamera;   // РЎСЃС‹Р»РєР° РЅР° РєР°РјРµСЂСѓ РёРіСЂРѕРєР°
+    public float randomIntervalMin = 5f; // РњРёРЅРёРјР°Р»СЊРЅС‹Р№ РёРЅС‚РµСЂРІР°Р» РґРѕ РїРѕСЏРІР»РµРЅРёСЏ РјРѕРЅСЃС‚СЂР°
+    public float randomIntervalMax = 15f; // РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ РёРЅС‚РµСЂРІР°Р» РґРѕ РїРѕСЏРІР»РµРЅРёСЏ РјРѕРЅСЃС‚СЂР°
+    public float monsterDistance = 5f;   // Р Р°СЃСЃС‚РѕСЏРЅРёРµ РїРѕСЏРІР»РµРЅРёСЏ РјРѕРЅСЃС‚СЂР°
+    public bool monsterAvailable = false; // Р”РѕСЃС‚СѓРїРЅРѕСЃС‚СЊ РјРѕРЅСЃС‚СЂР°
+    private Quaternion playerStartAngle; // РќР°С‡Р°Р»СЊРЅС‹Р№ СѓРіРѕР» РёРіСЂРѕРєР°
 
-    private AudioSource monsterSound;  // Источник звука монстра
+    private AudioSource monsterSound;  // Р—РІСѓРєРѕРІРѕР№ СЌС„С„РµРєС‚ РјРѕРЅСЃС‚СЂР°
 
     private void Start()
     {
-        // Убедимся, что камера указана
+        monsterAvailable = false;
+
+        // РџСЂРѕРІРµСЂРєР°, С‡С‚Рѕ РєР°РјРµСЂР° РёРіСЂРѕРєР° СѓРєР°Р·Р°РЅР°
         if (playerCamera == null)
         {
             GameObject cameraObject = GameObject.Find("First Person Camera");
@@ -25,68 +28,76 @@ public class MonsterTrigger : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Камера с именем 'First Person Camera' не найдена!");
+                Debug.LogError("РћС€РёР±РєР°: РљР°РјРµСЂР° 'First Person Camera' РЅРµ РЅР°Р№РґРµРЅР°!");
                 return;
             }
         }
 
-        // Проверяем наличие объекта монстра
+        // РџСЂРѕРІРµСЂРєР°, С‡С‚Рѕ РѕР±СЉРµРєС‚ РјРѕРЅСЃС‚СЂР° СѓРєР°Р·Р°РЅ
         if (monster == null)
         {
-            Debug.LogError("Монстр не привязан к скрипту!");
+            Debug.LogError("РћС€РёР±РєР°: РњРѕРЅСЃС‚СЂ РЅРµ РЅР°Р·РЅР°С‡РµРЅ!");
             return;
         }
 
-        // Получаем AudioSource монстра
+        // РџРѕР»СѓС‡РµРЅРёРµ РєРѕРјРїРѕРЅРµРЅС‚Р° AudioSource РјРѕРЅСЃС‚СЂР°
         monsterSound = monster.GetComponent<AudioSource>();
         if (monsterSound == null)
         {
-            Debug.LogError("На объекте монстра отсутствует компонент AudioSource!");
+            Debug.LogError("РћС€РёР±РєР°: РќР° РјРѕРЅСЃС‚СЂРµ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РєРѕРјРїРѕРЅРµРЅС‚ AudioSource!");
             return;
         }
 
-        // Запускаем цикл случайных появлений монстра
+        // Р—Р°РїСѓСЃРє РєРѕСЂСѓС‚РёРЅС‹ РґР»СЏ РїРѕСЏРІР»РµРЅРёСЏ РјРѕРЅСЃС‚СЂР°
         StartCoroutine(TriggerMonsterAtRandom());
+    }
+
+    private void Update()
+    {
+        if (monsterAvailable)
+        {
+            float angleDifference = Quaternion.Angle(playerStartAngle, playerCamera.parent.rotation);
+            if (angleDifference > 160f) // Р’С‹РїРѕР»РЅРёС‚СЊ, РєРѕРіРґР° РёРіСЂРѕРє СЂР°Р·РІРµСЂРЅРµС‚СЃСЏ РЅР° 180 РіСЂР°РґСѓСЃРѕРІ
+            {
+                ShowMonster();
+                monsterAvailable = false; // РЎР±СЂРѕСЃ СЃРѕСЃС‚РѕСЏРЅРёСЏ РґРѕСЃС‚СѓРїРЅРѕСЃС‚Рё РјРѕРЅСЃС‚СЂР°
+            }
+        }
     }
 
     private IEnumerator TriggerMonsterAtRandom()
     {
         while (true)
         {
-            // Ждём случайное время
+            // Р–РґР°С‚СЊ СЃР»СѓС‡Р°Р№РЅРѕРµ РІСЂРµРјСЏ
             yield return new WaitForSeconds(Random.Range(randomIntervalMin, randomIntervalMax));
 
-            // Показываем монстра
-            ShowMonster();
+            // РџРѕРґРіРѕС‚РѕРІРєР° Рє РїРѕСЏРІР»РµРЅРёСЋ РјРѕРЅСЃС‚СЂР°
+            monsterAvailable = true;
+            playerStartAngle = playerCamera.parent.rotation;
         }
     }
 
     private void ShowMonster()
     {
-        Debug.Log("Показываем монстра!");
-        monster.transform.position = playerCamera.position + playerCamera.forward * 5f;
-        monster.transform.rotation = Quaternion.LookRotation(playerCamera.forward);
+        Debug.Log("РџРѕСЏРІР»РµРЅРёРµ РјРѕРЅСЃС‚СЂР°!");
+        monster.transform.position = playerCamera.parent.position + playerCamera.parent.forward * monsterDistance;
+        monster.transform.rotation = Quaternion.LookRotation(playerCamera.parent.forward);
         monster.SetActive(true);
 
-        // Поворачиваем монстра лицом к игроку
-        monster.transform.rotation = Quaternion.LookRotation(playerCamera.forward);
-
-        // Активируем монстра
-        monster.SetActive(true);
-
-        // Проигрываем звук
+        // РџСЂРѕРёРіСЂС‹РІР°РЅРёРµ Р·РІСѓРєР° РјРѕРЅСЃС‚СЂР°
         if (monsterSound != null)
         {
             monsterSound.Play();
         }
 
-        // Скрываем монстра через короткое время
+        // РЎРєСЂС‹С‚РёРµ РјРѕРЅСЃС‚СЂР° С‡РµСЂРµР· 0.5 СЃРµРєСѓРЅРґ
         StartCoroutine(HideMonster());
     }
 
     private IEnumerator HideMonster()
     {
-        yield return new WaitForSeconds(0.5f); // Время, пока монстр остаётся видимым
+        yield return new WaitForSeconds(0.5f); // Р’СЂРµРјСЏ, С‡РµСЂРµР· РєРѕС‚РѕСЂРѕРµ РјРѕРЅСЃС‚СЂ РёСЃС‡РµР·РЅРµС‚
         monster.SetActive(false);
     }
 }
