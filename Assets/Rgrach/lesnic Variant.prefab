@@ -128,7 +128,7 @@ MonoBehaviour:
   detectionDistance: 20
   detectionAngle: 60
   attackDistance: 2.4
-  losePlayerDistance: 150
+  losePlayerDistance: 38.4
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
