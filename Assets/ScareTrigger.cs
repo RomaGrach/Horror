@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class ScareTrigger : MonoBehaviour
+public class ScareTrigger2 : MonoBehaviour
 {
     public GameObject monster;         // Ссылка на модель монстра
     public Transform startPosition;    // Точка, откуда монстр начнёт движение
