@@ -278,6 +278,78 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &143285492
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 143285495}
+  - component: {fileID: 143285494}
+  - component: {fileID: 143285493}
+  m_Layer: 0
+  m_Name: spawnmonster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &143285493
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143285492}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 20, y: 20, z: 20}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &143285494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143285492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e818a09f0b3d4f4e8aa74b7006008b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterPrefab: {fileID: 1476593882}
+  player: {fileID: 1381849544}
+  spawnDistance: 20
+  scareSound: {fileID: 8300000, guid: 27a9a018da5756544a793bae5e01595f, type: 3}
+  monsterLifetime: 5
+  lookSpeed: 2
+--- !u!4 &143285495
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143285492}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 79.47, y: 0, z: -111.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &176236440
 GameObject:
   m_ObjectHideFlags: 0
@@ -4695,7 +4767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a2a131ef208f10743acc6692caf06b5a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1615177300741768273, guid: a2a131ef208f10743acc6692caf06b5a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4944,9 +5016,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4017622711633149950, guid: a2a131ef208f10743acc6692caf06b5a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1476593886}
-    - targetCorrespondingSourceObject: {fileID: 4017622711633149950, guid: a2a131ef208f10743acc6692caf06b5a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1476593885}
   m_SourcePrefab: {fileID: 100100000, guid: a2a131ef208f10743acc6692caf06b5a, type: 3}
 --- !u!1 &1476593882 stripped
 GameObject:
@@ -4963,24 +5032,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4017622711633149950, guid: a2a131ef208f10743acc6692caf06b5a, type: 3}
   m_PrefabInstance: {fileID: 1476593881}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1476593885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476593884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e818a09f0b3d4f4e8aa74b7006008b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterPrefab: {fileID: 1476593882}
-  player: {fileID: 1381849544}
-  spawnDistance: 20
-  scareSound: {fileID: 8300000, guid: 27a9a018da5756544a793bae5e01595f, type: 3}
-  monsterLifetime: 5
-  lookSpeed: 2
 --- !u!136 &1476593886
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7076,3 +7127,4 @@ SceneRoots:
   - {fileID: 119336784}
   - {fileID: 2005643311}
   - {fileID: 1476593881}
+  - {fileID: 143285495}
