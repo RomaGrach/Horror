@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -67,6 +68,29 @@ public class EnemyAI : MonoBehaviour
             GoToNextWaypoint();
         }
     }
+
+
+    
+    
+
+    
+    void OnTriggerEnter(Collider other)
+    {
+        // Если объект, вошедший в триггер, имеет тег "Player"
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("есть");
+            // Получаем компонент PlayerHealth у объекта
+            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+
+            // Если компонент PlayerHealth найден, вызываем метод TakeDamage
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage();
+            }
+        }
+    }
+    
 
     private void AttackPlayer()
     {
