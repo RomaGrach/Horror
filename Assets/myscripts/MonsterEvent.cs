@@ -1,88 +1,73 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class MonsterEvent : MonoBehaviour
+
+
+public class MonsterSpawner : MonoBehaviour
 {
-    public GameObject monster; // Ссылка на объект монстра
-    public Transform monsterPosition; // Позиция, где появляется монстр
-    public float lookSpeed = 2f; // Скорость поворота камеры
-    public float monsterDisappearDelay = 3f; // Время до исчезновения монстра
-    public AudioClip tensionSound; // Напряжённый звук
+    public GameObject monsterPrefab; // Префаб монстра
+    public Transform player;         // Ссылка на игрока
+    public float spawnDistance = 20f; // Дистанция от игрока, где появляется монстр
+    public AudioClip scareSound;     // Страшный звук
+    public float monsterLifetime = 5f; // Время, через которое монстр исчезнет
+    public float lookSpeed = 2f;     // Скорость, с которой камера поворачивается на монстра
 
-    private bool eventTriggered = false; // Чтобы событие происходило только один раз
-    private AudioSource audioSource; // Источник звука
-    private Transform playerCamera; // Камера игрока
-
-    void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-
-        // Ищем камеру по имени
-        GameObject cameraObject = GameObject.Find("First Person Camera");
-        if (cameraObject != null)
-        {
-            playerCamera = cameraObject.transform;
-        }
-        else
-        {
-            Debug.LogError("Камера 'First Person Camera' не найдена!");
-        }
-
-        if (monster != null)
-        {
-            monster.SetActive(false);
-        }
-    }
-
+    private bool triggered = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (eventTriggered) return;
-
-        // Если игрок входит в триггер
-        if (other.CompareTag("Player"))
+        if (!triggered && other.CompareTag("Player"))
         {
-            eventTriggered = true;
-            StartCoroutine(MonsterSequence());
+            triggered = true;
+            SpawnMonster();
         }
     }
 
-    private IEnumerator MonsterSequence()
+    private void SpawnMonster()
     {
-        // Включаем монстра
-        if (monster != null)
-        {
-            monster.SetActive(true);
-            monster.transform.position = monsterPosition.position;
-        }
+        // Выбираем случайную точку в 20 единицах по X или Z от игрока
+        Vector3 spawnPosition = player.position + new Vector3(
+            Random.Range(-spawnDistance, spawnDistance),
+            0,
+            Random.Range(-spawnDistance, spawnDistance)
+        );
 
-        // Воспроизводим напряжённый звук
-        if (audioSource != null && tensionSound != null)
-        {
-            audioSource.clip = tensionSound;
-            audioSource.Play();
-        }
+        // Спавним монстра
+        GameObject monster = Instantiate(monsterPrefab, spawnPosition, Quaternion.identity);
+        monster.transform.LookAt(player); // Монстр поворачивается к игроку
 
-        // Поворачиваем камеру на монстра
-        Vector3 directionToMonster = (monsterPosition.position - playerCamera.position).normalized;
-        Quaternion targetRotation = Quaternion.LookRotation(directionToMonster);
+        // Проигрываем звук
+        AudioSource audioSource = monster.AddComponent<AudioSource>();
+        audioSource.clip = scareSound;
+        audioSource.Play();
 
-        float time = 0;
-        while (time < 1f)
+        // Начинаем плавный поворот камеры на монстра
+        StartCoroutine(LookAtMonster(monster.transform));
+
+        // Уничтожаем монстра через время
+        Destroy(monster, monsterLifetime);
+    }
+
+    private IEnumerator LookAtMonster(Transform monster)
+    {
+        Camera playerCamera = Camera.main;
+
+        while (true)
         {
-            time += Time.deltaTime * lookSpeed;
-            playerCamera.rotation = Quaternion.Slerp(playerCamera.rotation, targetRotation, time);
+            // Плавно поворачиваем камеру к монстру
+            Vector3 direction = (monster.position - playerCamera.transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            playerCamera.transform.rotation = Quaternion.Slerp(
+                playerCamera.transform.rotation,
+                targetRotation,
+                Time.deltaTime * lookSpeed
+            );
+
+            // Выходим из цикла, если камера уже почти смотрит на монстра
+            if (Quaternion.Angle(playerCamera.transform.rotation, targetRotation) < 1f)
+                break;
+
             yield return null;
-        }
-
-        // Задержка перед исчезновением монстра
-        yield return new WaitForSeconds(monsterDisappearDelay);
-
-        // Отключаем монстра
-        if (monster != null)
-        {
-            monster.SetActive(false);
         }
     }
 }
-
