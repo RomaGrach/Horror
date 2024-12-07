@@ -5,71 +5,81 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public GameObject monsterPrefab; // Префаб монстра
-    public Camera playerCamera;      // Ссылка на камеру игрока
-    public float spawnDistance = 7f; // Дистанция от камеры, где появляется монстр
-    public AudioClip scareSound;     // Страшный звук
+    public GameObject monsterPrefab;  // Префаб монстра
+    public Camera playerCamera;       // Камера игрока
+    public float spawnDistance = 10f; // Расстояние для спавна монстра
+    public AudioClip scareSound;      // Страшный звук
     public float monsterLifetime = 5f; // Время, через которое монстр исчезнет
-    public float lookSpeed = 2f;     // Скорость, с которой камера поворачивается на монстра
+    public float lookSpeed = 2f;      // Скорость, с которой камера поворачивается
 
-    private bool triggered = false; // Флаг, чтобы событие произошло один раз
+    private bool triggered = false;   // Флаг, чтобы триггер срабатывал один раз
 
     private void OnTriggerEnter(Collider other)
     {
-        // Если событие уже сработало или объект не камера, ничего не делаем
-        if (triggered || other.gameObject.tag != "Player")
-            return;
+        Debug.Log("Что-то вошло в триггер: " + other.gameObject.name);
 
-        triggered = true; // Устанавливаем, что триггер активирован
-        SpawnMonster();
+        if (!triggered && other.gameObject == playerCamera.gameObject)
+        {
+            Debug.Log("Камера вошла в триггер!");
+            triggered = true;
+            SpawnMonster();
+        }
     }
 
     private void SpawnMonster()
     {
-        // Определяем случайную точку на расстоянии от камеры
-        Vector3 spawnPosition = playerCamera.transform.position + new Vector3(
-            Random.Range(-spawnDistance, spawnDistance),
-            0,
-            Random.Range(-spawnDistance, spawnDistance)
-        );
+        Debug.Log("SpawnMonster вызван!");
 
-        // Спавним монстра
+        // 1. Рассчитываем позицию перед камерой
+        Vector3 forward = playerCamera.transform.forward.normalized; // Вектор направления камеры
+        Vector3 spawnPosition = playerCamera.transform.position + forward * spawnDistance;
+
+        // 2. Устанавливаем высоту монстра на уровне камеры
+        spawnPosition.y = playerCamera.transform.position.y;
+
+        // 3. Создаём монстра
         GameObject monster = Instantiate(monsterPrefab, spawnPosition, Quaternion.identity);
-        monster.transform.LookAt(playerCamera.transform.position); // Монстр поворачивается к камере
+        Debug.Log("Монстр заспавнен на позиции: " + spawnPosition);
 
-        // Проигрываем звук
+        // 4. Поворачиваем монстра лицом к камере
+        monster.transform.LookAt(playerCamera.transform);
+
+        // 5. Проигрываем звук
         AudioSource audioSource = monster.AddComponent<AudioSource>();
         audioSource.clip = scareSound;
         audioSource.Play();
 
-        // Начинаем плавный поворот камеры на монстра
+        // 6. Поворачиваем камеру на монстра
         StartCoroutine(LookAtMonster(monster.transform));
 
-        // Уничтожаем монстра через заданное время
-        /*Destroy(monster, monsterLifetime);*/
+        // 7. Уничтожаем монстра через заданное время
+        Destroy(monster, monsterLifetime);
     }
 
-    private IEnumerator LookAtMonster(Transform monster)
+
+    private IEnumerator LookAtMonster(Transform monsterTransform)
     {
-        // Получаем главную камеру игрока
         Transform cameraTransform = playerCamera.transform;
 
-        while (true)
+        while (monsterTransform != null) // Проверяем, существует ли монстр
         {
-            // Плавно поворачиваем камеру к монстру
-            Vector3 direction = (monster.position - cameraTransform.position).normalized;
+            // Рассчитываем направление на монстра
+            Vector3 direction = (monsterTransform.position - cameraTransform.position).normalized;
             Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+            // Плавно поворачиваем камеру
             cameraTransform.rotation = Quaternion.Slerp(
                 cameraTransform.rotation,
                 targetRotation,
                 Time.deltaTime * lookSpeed
             );
 
-            // Останавливаем, если угол поворота стал очень маленьким
+            // Останавливаем, если угол между текущим и целевым поворотом меньше 1 градуса
             if (Quaternion.Angle(cameraTransform.rotation, targetRotation) < 1f)
                 break;
 
-            yield return null;
+            yield return null; // Ждём следующий кадр
         }
     }
+
 }
