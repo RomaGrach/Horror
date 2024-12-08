@@ -3675,7 +3675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeAtakNow: 0
-  timeAtak: 0.5
+  timeAtak: 2
 --- !u!1 &1319149539
 GameObject:
   m_ObjectHideFlags: 0
@@ -5596,9 +5596,9 @@ MonoBehaviour:
   deathImage: {fileID: 1625590437}
   deathText: {fileID: 1171940493}
   flashSpeed: 0.5
-  flashSpeed1: 0.8
+  flashSpeed1: 0.2
   damageImage1Trans: 0.3
-  damag: 1
+  damag: 0
   timer: 0
   timerWAIT: 10
   canvasDEAD: {fileID: 1036668320}
@@ -5688,9 +5688,9 @@ MonoBehaviour:
   deathImage: {fileID: 1625590437}
   deathText: {fileID: 1171940493}
   flashSpeed: 0.5
-  flashSpeed1: 0.8
+  flashSpeed1: 0.2
   damageImage1Trans: 0.3
-  damag: -205
+  damag: 0
   timer: 0
   timerWAIT: 10
   canvasDEAD: {fileID: 1036668320}
