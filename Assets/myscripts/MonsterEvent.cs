@@ -5,22 +5,22 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public GameObject monsterPrefab;  // Префаб монстра
-    public Camera playerCamera;       // Камера игрока
-    public float spawnDistance = 10f; // Расстояние для спавна монстра
-    public AudioClip scareSound;      // Страшный звук
-    public float monsterLifetime = 5f; // Время, через которое монстр исчезнет
-    public float lookSpeed = 2f;      // Скорость, с которой камера поворачивается
+    public GameObject monsterPrefab;  // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public Camera playerCamera;       // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    public float spawnDistance = 10f; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public AudioClip scareSound;      // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+    public float monsterLifetime = 5f; // пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public float lookSpeed = 2f;      // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-    private bool triggered = false;   // Флаг, чтобы триггер срабатывал один раз
+    private bool triggered = false;   // пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Что-то вошло в триггер: " + other.gameObject.name);
+        Debug.Log("пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " + other.gameObject.name);
 
         if (!triggered && other.gameObject == playerCamera.gameObject)
         {
-            Debug.Log("Камера вошла в триггер!");
+            Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!");
             triggered = true;
             SpawnMonster();
         }
@@ -28,31 +28,31 @@ public class MonsterSpawner : MonoBehaviour
 
     private void SpawnMonster()
     {
-        Debug.Log("SpawnMonster вызван!");
+        Debug.Log("SpawnMonster пїЅпїЅпїЅпїЅпїЅпїЅ!");
 
-        // 1. Рассчитываем позицию перед камерой
-        Vector3 forward = playerCamera.transform.forward.normalized; // Вектор направления камеры
-        Vector3 spawnPosition = playerCamera.transform.position + forward * spawnDistance;
+        // 1. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        Vector3 forward = playerCamera.transform.forward.normalized; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+        Vector3 spawnPosition = playerCamera.transform.position * spawnDistance;
 
-        // 2. Устанавливаем высоту монстра на уровне камеры
+        // 2. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         spawnPosition.y = playerCamera.transform.position.y;
 
-        // 3. Создаём монстра
+        // 3. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         GameObject monster = Instantiate(monsterPrefab, spawnPosition, Quaternion.identity);
-        Debug.Log("Монстр заспавнен на позиции: " + spawnPosition);
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " + spawnPosition);
 
-        // 4. Поворачиваем монстра лицом к камере
+        // 4. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         monster.transform.LookAt(playerCamera.transform);
 
-        // 5. Проигрываем звук
+        // 5. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         AudioSource audioSource = monster.AddComponent<AudioSource>();
         audioSource.clip = scareSound;
         audioSource.Play();
 
-        // 6. Поворачиваем камеру на монстра
+        // 6. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         StartCoroutine(LookAtMonster(monster.transform));
 
-        // 7. Уничтожаем монстра через заданное время
+        // 7. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         Destroy(monster, monsterLifetime);
     }
 
@@ -60,25 +60,31 @@ public class MonsterSpawner : MonoBehaviour
     private IEnumerator LookAtMonster(Transform monsterTransform)
     {
         Transform cameraTransform = playerCamera.transform;
+        FirstPersonLook c_s = playerCamera.gameObject.GetComponent<FirstPersonLook>();
+        c_s.enabled= false;
 
-        while (monsterTransform != null) // Проверяем, существует ли монстр
+        while (monsterTransform != null) // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         {
-            // Рассчитываем направление на монстра
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             Vector3 direction = (monsterTransform.position - cameraTransform.position).normalized;
             Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-            // Плавно поворачиваем камеру
+            // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             cameraTransform.rotation = Quaternion.Slerp(
                 cameraTransform.rotation,
                 targetRotation,
                 Time.deltaTime * lookSpeed
             );
 
-            // Останавливаем, если угол между текущим и целевым поворотом меньше 1 градуса
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 1 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             if (Quaternion.Angle(cameraTransform.rotation, targetRotation) < 1f)
+            {
+                c_s.enabled = true;
                 break;
+            }
+                
 
-            yield return null; // Ждём следующий кадр
+            yield return null; // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         }
     }
 
