@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
             backgroundMusic.StopMusic();
         }
         // Переход на сцену TestMVP
-        SceneManager.LoadScene("TestMVP");
+        SceneManager.LoadScene("Test_map1 1");
     }
     public void QuitGame()
     {
