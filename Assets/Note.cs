@@ -16,6 +16,7 @@ public class Note : MonoBehaviour
             noteManager.OpenNoteByScript(this);
             // Дополнительная логика для открытия записки (например, отображение текста)
             Debug.Log("Note triggered by player!");
+            gameObject.SetActive(false);
         }
     }
 }

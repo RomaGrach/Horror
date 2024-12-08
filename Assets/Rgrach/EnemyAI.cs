@@ -20,6 +20,14 @@ public class EnemyAI : MonoBehaviour
     public bool playerDetected = false; // Флаг обнаружения игрока
     private int currentWaypointIndex = 0; // Индекс текущей точки маршрута
 
+    public float knockbackForce = 10f; // Сила отбрасывания
+    public float knockbackUpwardForce = 2f; // Сила отбрасывания вверх
+    public bool waitGround = false;
+
+    public float timeAtakNow = 0f;
+    public float timeAtak = 2f;
+    public bool atacAVALIBALE = false;
+
     // Переменные для анимации
     private static readonly int Run = Animator.StringToHash("Run");
     private static readonly int JumpAttack = Animator.StringToHash("JumpAttack");
@@ -28,8 +36,15 @@ public class EnemyAI : MonoBehaviour
     private static readonly int Attack = Animator.StringToHash("Attack");
     private static readonly int Go = Animator.StringToHash("Go");
 
+    public GroundCheck groundCheck;
+    public FirstPersonMovement s_g;
+
+
+    public event System.Action Jumped;
+
     private void Start()
     {
+        timeAtakNow = timeAtak;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         GoToNextWaypoint();
@@ -67,17 +82,45 @@ public class EnemyAI : MonoBehaviour
         {
             GoToNextWaypoint();
         }
+        /*
+        if (waitGround && timeAtak > timeAtakNow)
+        {
+            if (groundCheck.isGrounded)
+            {
+                //.Log(groundCheck.isGrounded);
+                s_g.enabled = true;
+            }
+        }
+        */
+        if(timeAtak > timeAtakNow)
+        {
+            timeAtakNow += Time.deltaTime;
+        }
+        
+        
+
+    }
+    private void FixedUpdate()
+    {
+        if (waitGround && !(timeAtak > timeAtakNow))
+        {
+            if (groundCheck.isGrounded)
+            {
+                //Debug.Log(groundCheck.isGrounded);
+                s_g.enabled = true;
+            }
+        }
     }
 
 
-    
-    
 
-    
+
+
+
     void OnTriggerEnter(Collider other)
     {
         // Если объект, вошедший в триггер, имеет тег "Player"
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !(timeAtak > timeAtakNow))
         {
             Debug.Log("есть");
             // Получаем компонент PlayerHealth у объекта
@@ -88,9 +131,38 @@ public class EnemyAI : MonoBehaviour
             {
                 playerHealth.TakeDamage();
             }
+
+            ApplyKnockback(other);
         }
     }
-    
+
+    private void ApplyKnockback(Collider player)
+    {
+        // Получаем компонент Rigidbody у игрока
+        Rigidbody playerRigidbody = player.GetComponent<Rigidbody>();
+        s_g = player.GetComponent<FirstPersonMovement>();
+        groundCheck = player.GetComponentInChildren<GroundCheck>();
+
+        // Если компонент Rigidbody найден, применяем силу отбрасывания
+        if (playerRigidbody != null)
+        {
+            Vector3 knockbackDirection = (player.transform.position - transform.position).normalized;
+            knockbackDirection.y = 0; // Убираем вертикальную составляющую
+            Vector3 knockback = knockbackDirection * knockbackForce + Vector3.up * knockbackUpwardForce;
+            Jumped?.Invoke();
+            s_g.enabled = false;
+            //playerRigidbody.AddForce(transform.forward * 100 * knockbackForce, ForceMode.Impulse);
+            playerRigidbody.AddForce(transform.up * 100 * knockbackUpwardForce + transform.forward * 100 * knockbackForce);
+            //playerRigidbody.AddForce(Vector3.up * 100 * 5);
+            //playerRigidbody.AddForce(transform.up * 100 * 5 + transform.forward * 100 * 5);
+            //s_g.enabled = true;
+            waitGround = true;
+            Jumped?.Invoke();
+            
+            timeAtakNow = 0f;
+        }
+    }
+
 
     private void AttackPlayer()
     {
