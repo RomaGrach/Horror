@@ -45,18 +45,18 @@ public class MonsterActivation : MonoBehaviour
         if (!isMonsterActive || monster == null || playerCamera == null) return;
 
         // Рассчитываем угол между направлением камеры и монстром
-        Vector3 directionToMonster = (monster.transform.position - playerCamera.position).normalized;
-        float angle = Vector3.Angle(playerCamera.forward, directionToMonster);
+        Vector3 directionToMonster = (monster.transform.position - playerCamera.parent.position).normalized;
+        float angle = Vector3.Angle(playerCamera.parent.forward, directionToMonster);
 
         // Если игрок отвернулся (>160 градусов), монстр приближается
         if (angle > 160f)
         {
-            float distance = Vector3.Distance(playerCamera.position, monster.transform.position);
+            float distance = Vector3.Distance(playerCamera.parent.position, monster.transform.position);
             if (distance > minDistance)
             {
                 monster.transform.position = Vector3.MoveTowards(
                     monster.transform.position,
-                    playerCamera.position,
+                    playerCamera.parent.position,
                     approachSpeed * Time.deltaTime
                 );
             }
@@ -77,6 +77,7 @@ public class MonsterActivation : MonoBehaviour
             monster.SetActive(true);
             audioSource.Play();
             isMonsterActive = true;
+            monster.transform.position = playerCamera.parent.transform.position + playerCamera.parent.transform.forward * 5;
         }
     }
 
