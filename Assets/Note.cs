@@ -3,6 +3,7 @@ using UnityEngine;
 public class Note : MonoBehaviour
 {
     private NoteManager noteManager;
+    public GameObject discoveryParticlesPrefab; // Префаб эффекта частиц
 
     void Start()
     {
@@ -14,7 +15,9 @@ public class Note : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             noteManager.OpenNoteByScript(this);
-            // Дополнительная логика для открытия записки (например, отображение текста)
+            if (discoveryParticlesPrefab != null) {
+                Instantiate(discoveryParticlesPrefab, transform.position, Quaternion.identity);
+            }            // Дополнительная логика для открытия записки (например, отображение текста)
             Debug.Log("Note triggered by player!");
             gameObject.SetActive(false);
         }
