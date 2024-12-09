@@ -4,65 +4,79 @@ using UnityEngine;
 
 public class MonsterActivation : MonoBehaviour
 {
-    public GameObject monster; // Ссылка на модель монстра
-    public Transform player;   // Ссылка на игрока
-    public float disappearDistance = 20f; // Расстояние, на котором монстр исчезает
+    public GameObject monster;         // Ссылка на объект монстра
+    public Transform player;           // Ссылка на игрока
+    public Transform playerCamera;     // Ссылка на камеру игрока
+    public float appearDistance = 5f;  // Дистанция появления монстра перед игроком
+    public float disappearDistance = 20f; // Дистанция, на которой монстр исчезает
+    public AudioSource audioSource;    // Источник звука для воспроизведения
 
-    private bool isPlayerInZone = false;
-    private MonsterDisappearance monsterDisappearance;
-
-    void Start()
-    {
-        // Получаем компонент MonsterDisappearance у монстра
-        monsterDisappearance = monster.GetComponent<MonsterDisappearance>();
-    }
+    private bool monsterActive = false;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) // Проверка, игрок ли зашел в зону
+        if (other.CompareTag("Player")) // Если игрок заходит в триггер
         {
-            isPlayerInZone = true;
-            monster.SetActive(true); // Активируем монстра
+            ActivateMonster();
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player")) // Игрок вышел из зоны
+        if (other.CompareTag("Player")) // Если игрок выходит из триггера
         {
-            isPlayerInZone = false;
-            // Вызываем плавное исчезновение
-            if (monsterDisappearance != null)
-            {
-                monsterDisappearance.FadeOut();
-            }
-            else
-            {
-                monster.SetActive(false); // Если компонента нет, просто отключаем
-            }
+            DeactivateMonster();
         }
     }
 
     void Update()
     {
-        if (isPlayerInZone)
+        if (monsterActive)
         {
             float distance = Vector3.Distance(player.position, monster.transform.position);
 
-            // Если игрок отошел слишком далеко, вызываем исчезновение
+            // Деактивируем монстра, если игрок далеко
             if (distance > disappearDistance)
             {
-                if (monsterDisappearance != null)
-                {
-                    monsterDisappearance.FadeOut();
-                }
-                else
-                {
-                    monster.SetActive(false);
-                }
+                DeactivateMonster();
             }
         }
     }
+
+    void ActivateMonster()
+    {
+        if (!monsterActive)
+        {
+            // Устанавливаем позицию монстра перед игроком
+            Vector3 forwardDirection = playerCamera.forward; // Направление взгляда камеры
+            forwardDirection.y = 0; // Убираем вертикальную составляющую, чтобы монстр не летал
+            forwardDirection.Normalize();
+
+            Vector3 spawnPosition = player.position + forwardDirection * appearDistance; // Перед игроком
+            monster.transform.position = spawnPosition;
+
+            // Поворачиваем монстра лицом к игроку
+            monster.transform.rotation = Quaternion.LookRotation(-forwardDirection);
+
+            // Активируем монстра
+            monster.SetActive(true);
+            monsterActive = true;
+
+            // Проигрываем звук появления
+            if (audioSource != null)
+            {
+                audioSource.Play(); // Используем звук, уже назначенный в AudioSource
+            }
+        }
+    }
+
+    void DeactivateMonster()
+    {
+        if (monsterActive)
+        {
+            // Деактивируем монстра
+            monster.SetActive(false);
+            monsterActive = false;
+        }
+    }
 }
-
-
