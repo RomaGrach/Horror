@@ -4,71 +4,93 @@ using UnityEngine;
 
 
 public class MonsterActivation : MonoBehaviour
+
 {
-    public GameObject monster; // Объект монстра
-    public Transform player; // Игрок
-    public float detectDistance = 10f; // Максимальное расстояние для обнаружения игрока
-    public float moveSpeed = 3f; // Скорость монстра
-    public float lookAngleThreshold = 160f; // Порог угла для того, чтобы монстр двигался
-    private bool isMonsterActive = false; // Флаг, активен ли монстр
+    public GameObject monster; // Ссылка на объект монстра
+    public Transform player;   // Ссылка на объект игрока
+    public AudioClip scareSound; // Звук появления
+    private AudioSource audioSource;
+    public float followDistance = 5f; // Расстояние, на которое монстр подходит к игроку
+    public float disappearDistance = 15f; // Расстояние, на котором монстр исчезает
+    public float angleThreshold = 160f; // Угол, при котором монстр начинает двигаться
+
+    private bool isMonsterActive = false;
 
     void Start()
     {
-        monster.SetActive(false); // Монстр не активен в начале
+        audioSource = GetComponent<AudioSource>();
+        if (monster != null)
+        {
+            monster.SetActive(false); // Изначально монстр выключен
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            ActivateMonster();
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            DeactivateMonster();
+        }
     }
 
     void Update()
     {
-        if (isMonsterActive)
+        if (isMonsterActive && monster != null && player != null)
         {
-            Vector3 directionToMonster = monster.transform.position - player.position;
-            float angle = Vector3.Angle(player.forward, directionToMonster.normalized);
+            Vector3 directionToPlayer = (player.position - monster.transform.position).normalized;
+            float angleToPlayer = Vector3.Angle(directionToPlayer, player.forward);
 
-            if (angle > lookAngleThreshold)
+            // Если игрок отвернулся (угол > 160)
+            if (angleToPlayer > angleThreshold)
             {
-                MoveMonsterTowardsPlayer();
+                float distance = Vector3.Distance(player.position, monster.transform.position);
+
+                if (distance > followDistance)
+                {
+                    // Приближаем монстра к игроку
+                    Vector3 targetPosition = player.position - directionToPlayer * followDistance;
+                    monster.transform.position = Vector3.Lerp(monster.transform.position, targetPosition, Time.deltaTime);
+                }
             }
-            else
+
+            // Проверка на исчезновение
+            float playerDistance = Vector3.Distance(player.position, monster.transform.position);
+            if (playerDistance > disappearDistance)
             {
-                StopMonster();
+                DeactivateMonster();
             }
         }
     }
 
-    void MoveMonsterTowardsPlayer()
+    void ActivateMonster()
     {
-        float distanceToPlayer = Vector3.Distance(monster.transform.position, player.position);
-
-        if (distanceToPlayer > detectDistance)
-        {
-            StopMonster();
-        }
-        else
-        {
-            monster.transform.position = Vector3.MoveTowards(monster.transform.position, player.position, moveSpeed * Time.deltaTime);
-        }
-    }
-
-    void StopMonster()
-    {
-        monster.SetActive(false);
-        isMonsterActive = false;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        if (monster != null)
         {
             monster.SetActive(true);
             isMonsterActive = true;
+
+            // Воспроизвести звук
+            if (scareSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(scareSound);
+            }
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    void DeactivateMonster()
     {
-        if (other.CompareTag("Player"))
+        if (monster != null)
         {
-            StopMonster();
+            monster.SetActive(false);
+            isMonsterActive = false;
         }
     }
 }
