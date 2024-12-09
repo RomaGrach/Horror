@@ -70,7 +70,17 @@ public class MonsterActivation : MonoBehaviour
         if (other.CompareTag("Player")) // Проверяем, что это игрок
         {
             monster.SetActive(true); // Активируем монстра
-            audioSource.PlayOneShot(spawnSound); // Воспроизводим звук появления
+
+            // Проверяем, существует ли AudioSource и назначен ли аудиоклип
+            if (audioSource != null && spawnSound != null)
+            {
+                audioSource.PlayOneShot(spawnSound); // Воспроизводим звук через AudioSource
+            }
+            else
+            {
+                Debug.LogWarning("AudioClip (spawnSound) не назначен в инспекторе!");
+            }
+
             isMonsterActive = true; // Устанавливаем флаг активности монстра
         }
     }
