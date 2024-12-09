@@ -1647,6 +1647,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZooMonsters4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a2a131ef208f10743acc6692caf06b5a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -4528065788448877793, guid: a2a131ef208f10743acc6692caf06b5a, type: 3}
@@ -1670,11 +1674,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2a131ef208f10743acc6692caf06b5a, type: 3}
---- !u!1 &419362598 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a2a131ef208f10743acc6692caf06b5a, type: 3}
-  m_PrefabInstance: {fileID: 419362597}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &439364488 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1773623360729482, guid: 11aaea5348574644a9eb4f4504fcce3f, type: 3}
@@ -2791,12 +2790,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3ad42beb90f304f851b4631a29c0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monster: {fileID: 419362598}
-  player: {fileID: 1381849544}
+  monster: {fileID: 1470038871}
   playerCamera: {fileID: 2086852892}
-  appearDistance: 5
-  disappearDistance: 20
-  audioSource: {fileID: 1680170913}
+  scareSound: {fileID: 8300000, guid: a3ed2ff128c702c4a8980c4f574b89bd, type: 3}
+  approachSpeed: 2
+  minDistance: 2
+  disappearDistance: 50
 --- !u!65 &889711631
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4758,6 +4757,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1470038871 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6666422252475643096, guid: a2a131ef208f10743acc6692caf06b5a, type: 3}
+  m_PrefabInstance: {fileID: 419362597}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1502981989
 GameObject:
   m_ObjectHideFlags: 0
