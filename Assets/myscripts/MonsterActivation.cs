@@ -47,12 +47,13 @@ public class MonsterActivation : MonoBehaviour
     {
         if (!monsterActive)
         {
-            // Устанавливаем позицию монстра перед игроком
-            Vector3 forwardDirection = playerCamera.forward; // Направление взгляда камеры
+            // Направление взгляда камеры
+            Vector3 forwardDirection = playerCamera.forward;
             forwardDirection.y = 0; // Убираем вертикальную составляющую, чтобы монстр не летал
             forwardDirection.Normalize();
 
-            Vector3 spawnPosition = player.position + forwardDirection * appearDistance; // Перед игроком
+            // Позиция появления монстра перед игроком
+            Vector3 spawnPosition = player.position + forwardDirection * appearDistance;
             monster.transform.position = spawnPosition;
 
             // Поворачиваем монстра лицом к игроку
@@ -65,10 +66,11 @@ public class MonsterActivation : MonoBehaviour
             // Проигрываем звук появления
             if (audioSource != null)
             {
-                audioSource.Play(); // Используем звук, уже назначенный в AudioSource
+                audioSource.Play();
             }
         }
     }
+
 
     void DeactivateMonster()
     {
