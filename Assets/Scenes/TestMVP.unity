@@ -5150,6 +5150,8 @@ MonoBehaviour:
   audioSource: {fileID: 1482685132}
   minPause: 1
   maxPause: 3
+  minDistance: 1
+  maxDistance: 10
 --- !u!1 &1502981989
 GameObject:
   m_ObjectHideFlags: 0
