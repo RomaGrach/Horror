@@ -12,12 +12,46 @@ public class moshrums : MonoBehaviour
 
     private Renderer objectRenderer;
 
+    public GameObject discoveryParticlesPrefab; // Префаб эффекта частиц
 
+    public GroundCheck groundCheck;
+    public FirstPersonMovement s_g;
+
+    public event System.Action Jumped;
+
+    public float timeAtakNow = 0f;
+    public float timeAtak = 1f;
+
+    public float knockbackForce = 10f; // Сила отбрасывания
+    public float knockbackUpwardForce = 2f; // Сила отбрасывания вверх
 
     // Радиус сферы для проверки соприкосновения
     public Vector3 checkBoxSize = new Vector3(1.0f, 1.0f, 1.0f);
 
+    public bool waitGround = false;
+
     // Метод, вызываемый при старте
+
+    private void Update()
+    {
+        if (timeAtak > timeAtakNow)
+        {
+            timeAtakNow += Time.deltaTime;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (waitGround && !(timeAtak > timeAtakNow))
+        {
+            if (groundCheck.isGrounded)
+            {
+                //Debug.Log(groundCheck.isGrounded);
+                s_g.enabled = true;
+            }
+        }
+    }
+
 
     private void Awake()
     {
@@ -64,9 +98,22 @@ public class moshrums : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
+            
             if (dangare)
             {
+                PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+
+                // Если компонент PlayerHealth найден, вызываем метод TakeDamage
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage();
+                }
                 objectRenderer.material = materials[1];
+                ApplyKnockback(other);
+                if (discoveryParticlesPrefab != null)
+                {
+                    Instantiate(discoveryParticlesPrefab, transform.position, Quaternion.identity);
+                }
             }
             else
             {
@@ -74,5 +121,32 @@ public class moshrums : MonoBehaviour
             }
         }
         
+    }
+
+    private void ApplyKnockback(Collider player)
+    {
+        // Получаем компонент Rigidbody у игрока
+        Rigidbody playerRigidbody = player.GetComponent<Rigidbody>();
+        s_g = player.GetComponent<FirstPersonMovement>();
+        groundCheck = player.GetComponentInChildren<GroundCheck>();
+
+        // Если компонент Rigidbody найден, применяем силу отбрасывания
+        if (playerRigidbody != null)
+        {
+            Vector3 knockbackDirection = (player.transform.position - transform.position).normalized;
+            knockbackDirection.y = 0; // Убираем вертикальную составляющую
+            Vector3 knockback = knockbackDirection * knockbackForce + Vector3.up * knockbackUpwardForce;
+            Jumped?.Invoke();
+            s_g.enabled = false;
+            //playerRigidbody.AddForce(transform.forward * 100 * knockbackForce, ForceMode.Impulse);
+            playerRigidbody.AddForce(transform.up * 100 * knockbackUpwardForce + -1 * player.transform.forward * 100 * knockbackForce);
+            //playerRigidbody.AddForce(Vector3.up * 100 * 5);
+            //playerRigidbody.AddForce(transform.up * 100 * 5 + transform.forward * 100 * 5);
+            //s_g.enabled = true;
+            waitGround = true;
+            Jumped?.Invoke();
+
+            timeAtakNow = 0f;
+        }
     }
 }
