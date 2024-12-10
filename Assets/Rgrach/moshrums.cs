@@ -87,6 +87,11 @@ public class moshrums : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position, checkBoxSize);
+        if (dangare)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, transform.position + Vector3.up * 100);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
