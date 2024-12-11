@@ -231,7 +231,7 @@ MonoBehaviour:
   notes:
   - {fileID: 0}
   - {fileID: 0}
-  pointer: {fileID: 4987602899813114391}
+  pointer: {fileID: 1263131222417528880, guid: 47fbd83cb05e342e39d4876c7ccd4d67, type: 3}
   openedNotes: []
   signText: {fileID: 583957962216729576}
   countNotes: 0
