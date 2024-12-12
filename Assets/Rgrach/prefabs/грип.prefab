@@ -183,6 +183,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 2911981539899790282}
 --- !u!1001 &2641367889557712539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -259,5 +260,10 @@ PrefabInstance:
 --- !u!4 &2531796379513686384 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1f0f132cc1cd02848b19e53739cb45eb, type: 3}
+  m_PrefabInstance: {fileID: 2641367889557712539}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2911981539899790282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f0f132cc1cd02848b19e53739cb45eb, type: 3}
   m_PrefabInstance: {fileID: 2641367889557712539}
   m_PrefabAsset: {fileID: 0}
