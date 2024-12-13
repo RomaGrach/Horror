@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 143285494}
   - component: {fileID: 143285493}
   m_Layer: 0
-  m_Name: spawnmonster
+  m_Name: spawnmonster2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6571,7 +6571,7 @@ GameObject:
   - component: {fileID: 1807468351}
   - component: {fileID: 1807468350}
   m_Layer: 0
-  m_Name: spawnmonster2
+  m_Name: spawnmonster3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7080,7 +7080,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 01b2f0da2faa79146b171887af6f7f16, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -7769,7 +7769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4153560587047375032, guid: 7d814a4c521f2da40ac5b70caca2f00b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
