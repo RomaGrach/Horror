@@ -9,7 +9,7 @@ public class spiderai : MonoBehaviour
     public AudioClip moveSound; // Звук движения паука
     public AudioClip attackSound; // Звук атаки паука
     public float attackRange = 2f; // Радиус атаки паука
-
+    private Animator animator; // Аниматор для управления анимациями
     private Transform targetPoint; // Текущая цель движения
     private AudioSource audioSource; // Компонент для воспроизведения звуков
     private bool isAttacking = false; // Флаг атаки
@@ -19,6 +19,7 @@ public class spiderai : MonoBehaviour
         // Устанавливаем начальную цель движения
         targetPoint = pointA;
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
         if (audioSource != null && moveSound != null)
         {
             audioSource.clip = moveSound;
@@ -59,7 +60,7 @@ public class spiderai : MonoBehaviour
     {
         isAttacking = true; // Останавливаем движение паука
         audioSource.Stop(); // Прекращаем звук движения
-
+        animator.SetTrigger("spidertrig");
         if (attackSound != null)
         {
             audioSource.PlayOneShot(attackSound); // Проигрываем звук атаки
