@@ -3,27 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 public class spiderai : MonoBehaviour
 {
-    public Transform pointA; // Точка A
-    public Transform pointB; // Точка B
-    public float moveSpeed = 2f; // Скорость передвижения паука
-    public AudioClip moveSound; // Звук движения паука
-    public AudioClip attackSound; // Звук атаки паука
-    public float attackRange = 2f; // Радиус атаки паука
-    private Animator animator; // Аниматор для управления анимациями
-    private Transform targetPoint; // Текущая цель движения
-    private AudioSource audioSource; // Компонент для воспроизведения звуков
-    private bool isAttacking = false; // Флаг атаки
+    public Transform pointA; // пїЅпїЅпїЅпїЅпїЅ A
+    public Transform pointB; // пїЅпїЅпїЅпїЅпїЅ B
+    public float moveSpeed = 2f; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    public AudioClip moveSound; // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    public AudioClip attackSound; // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    public float attackRange = 2f; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    private Animator animator; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    private Transform targetPoint; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    private AudioSource audioSource; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    private bool isAttacking = false; // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
     void Start()
     {
-        // Устанавливаем начальную цель движения
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         targetPoint = pointA;
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         if (audioSource != null && moveSound != null)
         {
             audioSource.clip = moveSound;
-            audioSource.loop = true; // Звук движения повторяется
+            audioSource.loop = true; // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             audioSource.Play();
         }
     }
@@ -38,10 +38,10 @@ public class spiderai : MonoBehaviour
 
     void MoveBetweenPoints()
     {
-        // Двигаем паука к целевой точке
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, moveSpeed * Time.deltaTime);
 
-        // Если паук достиг цели, меняем направление
+        // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (Vector3.Distance(transform.position, targetPoint.position) < 0.1f)
         {
             targetPoint = targetPoint == pointA ? pointB : pointA;
@@ -53,31 +53,39 @@ public class spiderai : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             AttackPlayer(other.transform);
+            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+
+            // Р•СЃР»Рё РєРѕРјРїРѕРЅРµРЅС‚ PlayerHealth РЅР°Р№РґРµРЅ, РІС‹Р·С‹РІР°РµРј РјРµС‚РѕРґ TakeDamage
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage();
+            }
         }
     }
 
     void AttackPlayer(Transform player)
     {
-        isAttacking = true; // Останавливаем движение паука
-        audioSource.Stop(); // Прекращаем звук движения
+        isAttacking = true; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+        audioSource.Stop(); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         animator.SetTrigger("spidertrig");
         if (attackSound != null)
         {
-            audioSource.PlayOneShot(attackSound); // Проигрываем звук атаки
+            audioSource.PlayOneShot(attackSound); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         }
 
-        // Направляем паука к игроку
+
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         Vector3 direction = (player.position - transform.position).normalized;
         transform.position += direction * (moveSpeed * 1.5f) * Time.deltaTime;
 
-        // Здесь можно добавить нанесение урона или другие эффекты
+        // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            isAttacking = false; // Возвращаем паука к его маршруту
+            isAttacking = false; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             targetPoint = Vector3.Distance(transform.position, pointA.position) < Vector3.Distance(transform.position, pointB.position)
                 ? pointA
                 : pointB;
