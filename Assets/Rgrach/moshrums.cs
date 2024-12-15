@@ -30,6 +30,8 @@ public class moshrums : MonoBehaviour
 
     public bool waitGround = false;
 
+    public GameObject modelgrip;
+
     // Метод, вызываемый при старте
 
     private void Update()
@@ -64,7 +66,7 @@ public class moshrums : MonoBehaviour
     void Start()
     {
         
-        objectRenderer = GetComponent<Renderer>();
+        objectRenderer = modelgrip.GetComponent<Renderer>();
         // Инициализация переменной
         touchingObjectsCount = 0;
 
@@ -87,6 +89,11 @@ public class moshrums : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position, checkBoxSize);
+        if (dangare)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, transform.position + Vector3.up * 100);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -98,8 +105,21 @@ public class moshrums : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            
-            if (dangare)
+            Material[] objectMaterials = objectRenderer.materials;
+            if (objectRenderer != null && objectRenderer.materials.Length > 0)
+            { // Получаем массив материалов
+                 // Цикл для вывода всех индексов материалов
+                for (int i = 0; i < objectMaterials.Length; i++)
+                {
+                    Debug.Log("Material index: " + i + ", Material name: " + objectMaterials[i].name);
+                }
+            }
+            else
+            {
+                Debug.LogWarning("No renderer or materials found on the object.");
+
+            }
+                if (dangare)
             {
                 PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
 
@@ -108,7 +128,7 @@ public class moshrums : MonoBehaviour
                 {
                     playerHealth.TakeDamage();
                 }
-                objectRenderer.material = materials[1];
+                objectMaterials[1] = materials[1];
                 ApplyKnockback(other);
                 if (discoveryParticlesPrefab != null)
                 {
@@ -117,8 +137,9 @@ public class moshrums : MonoBehaviour
             }
             else
             {
-                objectRenderer.material = materials[0];
+                objectMaterials[1] = materials[0];
             }
+            objectRenderer.materials = objectMaterials;
         }
         
     }

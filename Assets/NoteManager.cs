@@ -11,16 +11,46 @@ public class NoteManager : MonoBehaviour
     private int noteCounter = 0; // Счетчик открытых записок
     public TextMeshProUGUI signText;
     public int countNotes;
+    public string targetObjectName = "Door04_pr"; // Имя целевого объекта
+    public bool NOTopen = true;
+    public GameObject targetObject;
 
     private void Start()
     {
         countNotes = notes.Count;
         SetSignText();
+        targetObject = GameObject.Find(targetObjectName);
     }
 
     void Update()
     {
         RotatePointerToNearestNote();
+        if(NOTopen && openedNotes.Count == notes.Count)
+        {
+            NOTopen = false;
+            if (targetObject != null)
+            {
+                // Получить компонент RotateObject
+                RotateObject rotateComponent = targetObject.GetComponent<RotateObject>();
+
+                // Проверить, найден ли компонент RotateObject
+                if (rotateComponent != null)
+                {
+                    // Вызвать функцию StartRotation
+                    rotateComponent.StartRotation();
+                    Debug.Log("StartRotation вызван у объекта: " + targetObjectName);
+                }
+                else
+                {
+                    Debug.LogError("Компонент RotateObject не найден у объекта: " + targetObjectName);
+                }
+            }
+            else
+            {
+                Debug.LogError("Объект с именем " + targetObjectName + " не найден.");
+            }
+        }
+
     }
 
     void RotatePointerToNearestNote()
@@ -88,3 +118,5 @@ public class NoteManager : MonoBehaviour
         }
     }
 }
+
+

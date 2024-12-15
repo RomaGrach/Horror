@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &117340914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +169,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &117340915
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -274,7 +275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &176236441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +302,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &176236442
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -406,7 +408,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &191523927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,6 +435,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &191523928
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -538,7 +541,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &201289749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,6 +568,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &201289750
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -651,6 +655,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &217609998
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1358004807921724119, guid: 09a76dca39c7e444baa649ffb654276d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 47.25653
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358004807921724119, guid: 09a76dca39c7e444baa649ffb654276d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358004807921724119, guid: 09a76dca39c7e444baa649ffb654276d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -99.297775
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358004807921724119, guid: 09a76dca39c7e444baa649ffb654276d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358004807921724119, guid: 09a76dca39c7e444baa649ffb654276d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358004807921724119, guid: 09a76dca39c7e444baa649ffb654276d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358004807921724119, guid: 09a76dca39c7e444baa649ffb654276d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358004807921724119, guid: 09a76dca39c7e444baa649ffb654276d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358004807921724119, guid: 09a76dca39c7e444baa649ffb654276d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358004807921724119, guid: 09a76dca39c7e444baa649ffb654276d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7167881466010056486, guid: 09a76dca39c7e444baa649ffb654276d, type: 3}
+      propertyPath: dangare
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7167881466010056486, guid: 09a76dca39c7e444baa649ffb654276d, type: 3}
+      propertyPath: modelgrip
+      value: 
+      objectReference: {fileID: 1004329491}
+    - target: {fileID: 8442008504163018292, guid: 09a76dca39c7e444baa649ffb654276d, type: 3}
+      propertyPath: m_Name
+      value: "\u0433\u0440\u0438\u043F"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 09a76dca39c7e444baa649ffb654276d, type: 3}
 --- !u!1 &293085908
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,7 +738,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &293085909
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -775,7 +844,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &310900106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -802,6 +871,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &310900107
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -907,7 +977,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &321146773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -934,6 +1004,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &321146774
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1312,7 +1383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &404708923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1339,6 +1410,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &404708924
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1444,7 +1516,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &486772663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1471,6 +1543,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &486772664
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1569,7 +1642,7 @@ GameObject:
   - component: {fileID: 505691145}
   - component: {fileID: 505691144}
   - component: {fileID: 505691143}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1682,7 +1755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &524323894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1709,6 +1782,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &524323895
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1948,7 +2022,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &653064976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1975,6 +2049,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &653064977
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2213,7 +2288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &782837927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2240,6 +2315,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &782837928
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2651,7 +2727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &944297389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2678,6 +2754,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &944297390
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2821,6 +2898,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e387473e2e0f4b9bbebd0e9323badf7, type: 3}
+--- !u!1 &1004329491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2911981539899790282, guid: 09a76dca39c7e444baa649ffb654276d, type: 3}
+  m_PrefabInstance: {fileID: 217609998}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1028061850
 GameObject:
   m_ObjectHideFlags: 0
@@ -2840,7 +2922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1028061851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2867,6 +2949,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &1028061852
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2977,7 +3060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1096841118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3004,6 +3087,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &1096841119
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3114,7 +3198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1121854927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3141,6 +3225,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &1121854928
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3246,7 +3331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1154406548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3273,6 +3358,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &1154406549
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3456,7 +3542,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1303482817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3483,6 +3569,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &1303482818
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3704,7 +3791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1389490755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3731,6 +3818,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &1389490756
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3836,7 +3924,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1395668178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3863,6 +3951,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &1395668179
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3968,7 +4057,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1413564055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3995,6 +4084,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &1413564057
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4100,7 +4190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1502981990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4127,6 +4217,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &1502981992
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4232,7 +4323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1601488493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4259,6 +4350,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &1601488494
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4369,7 +4461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1745939709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4396,6 +4488,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &1745939710
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4501,7 +4594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1748289133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4528,6 +4621,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &1748289134
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4633,7 +4727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1768927321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4660,6 +4754,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &1768927322
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4765,7 +4860,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1776681439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4792,6 +4887,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &1776681440
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4897,7 +4993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1815572082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4924,6 +5020,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &1815572083
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5029,7 +5126,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1908447644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5056,6 +5153,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &1908447645
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5294,7 +5392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1990372225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5321,6 +5419,7 @@ MonoBehaviour:
   knockbackUpwardForce: 2
   checkBoxSize: {x: 21, y: 21, z: 21}
   waitGround: 0
+  modelgrip: {fileID: 0}
 --- !u!65 &1990372226
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6255,6 +6354,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 7026157699822939554, guid: 3506ff6e0ca6c47e7b10ac91a4423eee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6787,6 +6890,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8442008504163018292, guid: 09a76dca39c7e444baa649ffb654276d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7110,3 +7217,4 @@ SceneRoots:
   - {fileID: 890442167}
   - {fileID: 1353214671}
   - {fileID: 988923930}
+  - {fileID: 217609998}
