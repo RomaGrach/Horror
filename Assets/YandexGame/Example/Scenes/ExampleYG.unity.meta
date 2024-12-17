@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/YandexGame/Example/Scenes/ExampleYG.unity.meta
 guid: e49bf7e58fdb4db4c9df51f0ddb8f327
+========
+guid: f99f3480d6fece448ba4dec2e0a16317
+>>>>>>>> main:Assets/Assets/CatStudio/Maps/ForestMap/Resources/Prefab/Map/assets.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
