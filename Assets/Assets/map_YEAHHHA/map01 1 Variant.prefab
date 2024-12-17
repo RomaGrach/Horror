@@ -280,6 +280,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 3957618251446887699, guid: 5afe2414ab3ca1d42aa7a3bbd43e89d5, type: 3}
+      propertyPath: m_DrawInstanced
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957618251446887699, guid: 5afe2414ab3ca1d42aa7a3bbd43e89d5, type: 3}
+      propertyPath: m_HeightmapPixelError
+      value: 193.6
+      objectReference: {fileID: 0}
     - target: {fileID: 3986187526724946224, guid: 5afe2414ab3ca1d42aa7a3bbd43e89d5, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
