@@ -9,16 +9,16 @@ public class CampfireTrigger : MonoBehaviour
 
     private void Start()
     {
-        // Находим объект текста по имени
-        messageText = GameObject.Find("CampfireText").GetComponent<Text>();
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+        //messageText = GameObject.Find("CampfireText").GetComponent<Text>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            messageText.text = "Ох...что-то я устал, мне стоит согреться и отдохнуть";
-            messageText.enabled = true;
+            //messageText.text = "пїЅпїЅ...пїЅпїЅпїЅ-пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+            //messageText.enabled = true;
         }
     }
 
@@ -26,7 +26,7 @@ public class CampfireTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            messageText.enabled = false;
+            //messageText.enabled = false;
         }
     }
 }

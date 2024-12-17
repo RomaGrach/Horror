@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class leninActivator : MonoBehaviour
@@ -30,6 +31,10 @@ public class leninActivator : MonoBehaviour
             {
                 ob.SetActive(false);
             }
+
+            GetLenin GL = other.GetComponent<GetLenin>();
+            GL.GetLeninFunc();
+
         }
     }
 }

@@ -26,4 +26,10 @@ public class GetLenin : MonoBehaviour
         linin.SetActive(true);
         lenin = true;
     }
+
+    public void DropLeninFunc()
+    {
+        emp.SetActive(true);
+        linin.SetActive(false);
+    }
 }
