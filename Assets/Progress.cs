@@ -19,7 +19,7 @@ Progress.Instance.SaveProgres();
 [System.Serializable]
 public class PlayerInfo
 {
-    public int Coins = 5;
+    public int LevelProgress = 0;
     public int Killed = 0;
     public int Flight = 0;
     public float MaxHP = 5;
@@ -95,9 +95,9 @@ public class Progress : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         Test = true;
-        Debug.Log("WaitTime" + PlayerInfo.Coins);
+        //Debug.Log("WaitTime" + PlayerInfo.Coins);
         //DownloadProgress();
-        Debug.Log("WaitTime" + PlayerInfo.Coins);
+        //Debug.Log("WaitTime" + PlayerInfo.Coins);
 
     }
 
@@ -238,6 +238,7 @@ public class Progress : MonoBehaviour
 
     public void resetProgress()
     {
+        Debug.Log("____________________resetProgress___________________");
         PlayerInfo = new PlayerInfo();
         Instance.PlayerInfo.Desktop = Desktop;
         SaveProgres();
