@@ -5,48 +5,49 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pausePanel;     // Панель паузы
+    public GameObject pausePanel;     // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     private bool isPaused = false;
 
     void Start()
     {
-        pausePanel.SetActive(false);    // Отключаем панели при старте
+        pausePanel.SetActive(false);    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     }
     void Update()
     {
-        // Проверяем нажатие клавиши ESC
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ESC
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
             {
-                ResumeGame(); // Если пауза активна, продолжить игру
+                ResumeGame(); // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
             }
             else
             {
-                PauseGame(); // Если паузы нет, активировать её
+                PauseGame(); // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ
             }
         }
     }
-    // Функция для показа панели паузы
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     public void PauseGame()
     {
-        pausePanel.SetActive(true);   // Показать панель паузы
-        Time.timeScale = 0f;          // Остановить время в игре
+        Cursor.lockState = CursorLockMode.None;
+        pausePanel.SetActive(true);   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+        Time.timeScale = 0f;          // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
         isPaused = true;
     }
-    // Функция для продолжения игры
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     public void ResumeGame()
     {
         Debug.Log("button clicked");
-        pausePanel.SetActive(false);   // Скрыть панель паузы
-        Time.timeScale = 1f;           // Возобновить время
+        pausePanel.SetActive(false);   // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+        Time.timeScale = 1f;           // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         isPaused = false;
     }
-    // Переход в главное меню
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     public void LoadMainMenu()
     {
         Debug.Log("button clicked");
-        Time.timeScale = 1f;            // Возобновить время перед загрузкой меню
-        SceneManager.LoadScene("menu"); // Замените "MainMenu" на название вашей сцены
+        Time.timeScale = 1f;            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+        SceneManager.LoadScene(0); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "MainMenu" пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     }
 }

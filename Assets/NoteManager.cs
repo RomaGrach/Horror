@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using static UnityEditor.FilePathAttribute;
 
 public class NoteManager : MonoBehaviour
 {
@@ -22,7 +21,7 @@ public class NoteManager : MonoBehaviour
         targetObject = GameObject.Find(targetObjectName);
     }
 
-    void Update()
+    private void Update()
     {
         RotatePointerToNearestNote();
         if(NOTopen && openedNotes.Count == notes.Count)

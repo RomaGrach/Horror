@@ -703,6 +703,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 405780831}
   m_CullTransparentMesh: 1
+--- !u!114 &416850040 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2040253256131281710, guid: 925cd4ff541114e86821671e17604bc8, type: 3}
+  m_PrefabInstance: {fileID: 330554837463546585}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9266e877794c4d53a297eb7ad9ba6d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &427685373
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,7 +960,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 481018718}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 535780674}
+        m_TargetAssemblyTypeName: SceneSwitcher, Assembly-CSharp
+        m_MethodName: SwitchToScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &481018718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1000,6 +1023,7 @@ GameObject:
   - component: {fileID: 535780673}
   - component: {fileID: 535780672}
   - component: {fileID: 535780671}
+  - component: {fileID: 535780674}
   m_Layer: 5
   m_Name: ButtonPlay
   m_TagString: Untagged
@@ -1084,6 +1108,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 416850040}
+        m_TargetAssemblyTypeName: Progress, Assembly-CSharp
+        m_MethodName: resetProgress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 535780674}
+        m_TargetAssemblyTypeName: SceneSwitcher, Assembly-CSharp
+        m_MethodName: SwitchToScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &535780672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1122,6 +1170,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 535780669}
   m_CullTransparentMesh: 1
+--- !u!114 &535780674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535780669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd5612f23220f42f49492bb08a5d6865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &607754967
 GameObject:
   m_ObjectHideFlags: 0
